@@ -1,0 +1,12 @@
+{
+  "name": "student-management-system",
+  "version": "1.0.0",
+  "description": "Full-stack Student Management System (React, Node.js, Express, MySQL)",
+  "private": true,
+  "scripts": {
+    "server": "npm --prefix server run dev",
+    "server:start": "npm --prefix server start"
+  },
+  "author": "",
+  "license": "ISC"
+}
