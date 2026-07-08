@@ -1,10 +1,11 @@
 import './App.css';
+import MainLayout from './layouts/MainLayout';
 
 function App() {
   return (
-    <div className="app">
-      <h1>Student Management System</h1>
-    </div>
+    <MainLayout>
+      <h1>Welcome to the Student Management System</h1>
+    </MainLayout>
   );
 }
 
