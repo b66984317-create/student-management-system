@@ -1,1 +1,32 @@
-/* App-specific styles will go here as we build components */
+/* App-specific styles will go here as we build components */.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-header {
+  background-color: #1e293b;
+  color: #ffffff;
+  padding: 16px 24px;
+}
+
+.main-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.main-footer {
+  background-color: #1e293b;
+  color: #cbd5e1;
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+}
