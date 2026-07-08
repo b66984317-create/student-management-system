@@ -45,3 +45,8 @@
 .navbar-item:hover {
   color: #ffffff;
 }
+.navbar-item .active {
+  color: #ffffff;
+  font-weight: 600;
+  border-bottom: 2px solid #ffffff;
+}
