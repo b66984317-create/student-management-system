@@ -1,35 +1,27 @@
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
 require('dotenv').config();
 
+const app = express();
 const PORT = process.env.PORT || 5000;
-const NODE_ENV = process.env.NODE_ENV || 'development';
 
-console.log('==============================================');
-console.log(' Student Management System - Environment Check');
-console.log('==============================================');
-console.log(`Node.js version : ${process.version}`);
-console.log(`Environment      : ${NODE_ENV}`);
-console.log(`Configured PORT  : ${PORT}`);
-console.log('----------------------------------------------');
+// Middleware
+app.use(cors());
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-const requiredPackages = ['express', 'cors', 'dotenv', 'mysql2'];
-let allInstalled = true;
-
-requiredPackages.forEach((pkg) => {
-  try {
-    require.resolve(pkg);
-    console.log(`[OK] ${pkg} is installed`);
-  } catch (err) {
-    allInstalled = false;
-    console.log(`[MISSING] ${pkg} is NOT installed`);
-  }
+// Health check route
+app.get('/api/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    message: 'Server is running',
+    timestamp: new Date().toISOString()
+  });
 });
 
-console.log('----------------------------------------------');
-
-if (allInstalled) {
-  console.log('✅ Environment is ready for Volume 1 development.');
-} else {
-  console.log('❌ Some dependencies are missing. Run "npm install" in /server.');
-}
-
-console.log('==============================================');
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
