@@ -8,9 +8,10 @@
     "dev": "nodemon index.js"
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
     "express": "^4.19.2",
+    "morgan": "^1.11.0",
     "mysql2": "^3.11.0"
   },
   "devDependencies": {
