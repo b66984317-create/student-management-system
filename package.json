@@ -8,5 +8,8 @@
     "server:start": "npm --prefix server start"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mysql2": "^3.22.6"
+  }
 }
