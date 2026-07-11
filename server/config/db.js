@@ -16,4 +16,13 @@ const pool = mysql.createPool({
 // Export a promise-based version so we can use async/await in routes
 const promisePool = pool.promise();
 
+// Test the connection once at startup so failures are loud, not silent
+promisePool.query('SELECT 1')
+  .then(() => {
+    console.log('✅ MySQL connected successfully');
+  })
+  .catch((err) => {
+    console.error('❌ MySQL connection failed:', err.message);
+  });
+
 module.exports = promisePool;
