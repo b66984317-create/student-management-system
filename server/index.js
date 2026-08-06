@@ -2,6 +2,7 @@ const dbTestRoute = require('./routes/dbTest');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const studentRoutes = require('./routes/studentRoutes');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
@@ -33,6 +34,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use('/api/db-test', dbTestRoute);
+app.use('/api/students', studentRoutes);
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
