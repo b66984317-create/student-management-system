@@ -2,12 +2,31 @@ const dbTestRoute = require('./routes/dbTest');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 const healthRoutes = require('./routes/healthRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+// Security headers
+app.use(helmet());
+
+// Basic rate limiting — applies to all requests
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per window
+  standardHeaders: true, // return rate limit info in RateLimit-* headers
+  legacyHeaders: false, // disable X-RateLimit-* headers
+  message: {
+    success: false,
+    message: 'Too many requests, please try again later.',
+    data: null,
+  },
+});
+
+app.use(apiLimiter);
 
 // Middleware
 app.use(cors());
