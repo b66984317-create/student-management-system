@@ -1,6 +1,7 @@
 const express = require('express');
+const validateStudent = require('../middleware/validateStudent');
 const router = express.Router();
-const { getAllStudents, getStudentById } = require('../models/studentModel');
+const { getAllStudents, createStudent, getStudentByEmail } = require('../models/studentModel');
 const { sendSuccess, sendError } = require('../utils/response');
 
 /**
