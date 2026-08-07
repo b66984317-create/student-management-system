@@ -32,4 +32,30 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+// POST /api/students - create a new student
+router.post('/', validateStudent, async (req, res, next) => {
+  try {
+    const { first_name, last_name, email, date_of_birth } = req.body;
+
+    // Check for duplicate email
+    const existing = await getStudentByEmail(email);
+    if (existing) {
+      return res.status(409).json({
+        success: false,
+        message: 'A student with this email already exists'
+      });
+    }
+
+    const newStudent = await createStudent({ first_name, last_name, email, date_of_birth });
+
+    res.status(201).json({
+      success: true,
+      message: 'Student created successfully',
+      data: newStudent
+    });
+  } catch (err) {
+    next(err); // pass to your centralized error handler
+  }
+});
+
 module.exports = router;
